@@ -18,6 +18,10 @@ from tmdb_v3_api import get_api_for_context
 
 
 db = DBCommands()
+async def get_lang(user_id):
+    user = await db.get_user(user_id)
+    if user:
+        return user.language
 
 
 # =====================================================================================================================
@@ -52,8 +56,13 @@ async def movie_list(callback: types.CallbackQuery,state: FSMContext):
         movie_list = tmdb_with_language.movie.details(movie_id[first])
 
         message = MessageText((movie_list))
-        async with state.proxy() as data:
-            language = data.get("language", "en")  # Default to English if not set
+        user_language = await get_lang(callback.from_user.id)
+
+        # Use the fetched language or provide a default if it's None
+        if user_language:
+            language = user_language
+        else:
+            language = "EN"  
 
         if message.movie_image is None:
             poster = "https://image.tmdb.org/t/p/original"

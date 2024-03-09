@@ -66,8 +66,8 @@ async def change_language(callback: types.CallbackQuery):
             callback.message.chat.id,
             img,
             _(
-                "<b>Hey! I Am {username}\nBuddy I Can Help U With:\n\n🔍 🔸 Find A Movie \n\n"
-                "📝 🔸 Add It Your Movie List \n\n"
+                "<b>Hey! I Am {username}\nBuddy I Can Help U With:\n\n🔍 🔸 Find a TV Show \n\n"
+                "📝 🔸 Add it to your TV Show List \n\n"
                 "📺 🔸 Watch Trailer On YouTube  \n\nℹ 🔸 Watch Info On TMDB ️\n\n"
                 "⚡ 🔸 And Yes! I Am Powered By TMDB󠁴</b>"
             ).format(username=username),
@@ -83,7 +83,7 @@ async def starter(callback: types.CallbackQuery):
     await asyncio.sleep(0.25)
 
     await callback.message.reply(
-        _("Find Movie Or Check Your Movie List 👇"), reply_markup=start()
+        _("Find TV Show Or Check Your TV Shows List 👇"), reply_markup=start()
     )
     await callback.answer()
 

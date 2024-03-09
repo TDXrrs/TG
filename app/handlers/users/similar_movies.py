@@ -10,6 +10,15 @@ from keyboards.inline.choise_buttons import menu_, similar_movie_keyboard
 from loader import _, bot, dp
 from message_output.message_output import MessageText
 from tmdb_v3_api import get_api_for_context
+from database.db import DBCommands
+
+
+db = DBCommands()
+async def get_lang(user_id):
+    user = await db.get_user(user_id)
+    if user:
+        return user.language
+
 
 # ================ SIMILAR ============================================================================================
 
@@ -28,8 +37,13 @@ async def movie_like_this(callback: types.CallbackQuery,state: FSMContext):
 
         tmdb_with_language = await get_api_for_context(callback.message.chat.id)
 
-        async with state.proxy() as data:
-            language = data.get("language", "en")  # Default to English if not set
+        user_language = await get_lang(callback.from_user.id)
+
+        # Use the fetched language or provide a default if it's None
+        if user_language:
+            language = user_language
+        else:
+            language = "EN"  
 
         movie_list = tmdb_with_language.movie.recommendations(movie_id)
         first = int(callback["data"].replace("similar_", ""))

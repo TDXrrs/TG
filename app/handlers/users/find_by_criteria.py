@@ -21,7 +21,10 @@ from tmdb_v3_api import get_api_for_context
 
 db = DBCommands()
 
-
+async def get_lang(user_id):
+    user = await db.get_user(user_id)
+    if user:
+        return user.language
 # =====================================================================================================================
 
 # ================ CANCEL CHOOSE ======================================================================================
@@ -215,8 +218,13 @@ async def total(callback: types.CallbackQuery, state: FSMContext):
         year = i.year
 
         tmdb_with_language = await get_api_for_context(callback.message.chat.id)
-        async with state.proxy() as data:
-            language = data.get("language", "en")  # Default to English if not set
+        user_language = await get_lang(callback.from_user.id)
+
+        # Use the fetched language or provide a default if it's None
+        if user_language:
+            language = user_language
+        else:
+            language = "EN"  
 
 
         movie_list = tmdb_with_language.discover.discover_tv_shows(

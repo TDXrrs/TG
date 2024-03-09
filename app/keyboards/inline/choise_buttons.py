@@ -12,9 +12,9 @@ def starting():
 
 def start():
     buttons = [
-        types.InlineKeyboardButton(text=_("🎬 Find Movies"), callback_data="movies"),
+        types.InlineKeyboardButton(text=_("🎬 Find TV Show"), callback_data="movies"),
         types.InlineKeyboardButton(
-            text=_("🍿 My Movie List"), callback_data="movie_list_0"
+            text=_("🍿 My TV Show List"), callback_data="movie_list_0"
         ),
     ]
     keyboard = types.InlineKeyboardMarkup()
@@ -55,7 +55,7 @@ def my_movies(first, movie, title, movie_id,language):
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("↩️ Back To Search Movies"), callback_data="movies"
+            text=_("↩️ Back To Search"), callback_data="movies"
         )
     )
 
@@ -65,13 +65,13 @@ def my_movies(first, movie, title, movie_id,language):
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("🗑 Delete From Movie List"), callback_data="delete_from_movie_list"
+            text=_("🗑 Delete From My List"), callback_data="delete_from_movie_list"
         )
     )
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("🎱 Movie Like This"), callback_data="similar_0"
+            text=_("🎱 TV Show Like This"), callback_data="similar_0"
         )
     )
 
@@ -122,7 +122,7 @@ def popular_movie_buttons(first, popular_list, original_name, movie_id,language)
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("↩️ Back To Search Movies"), callback_data="movies"
+            text=_("↩️ Back To Search"), callback_data="movies"
         )
     )
 
@@ -132,13 +132,13 @@ def popular_movie_buttons(first, popular_list, original_name, movie_id,language)
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("📝 Add To Movie List"), callback_data="add_to_movie_list"
+            text=_("📝 Add To My List"), callback_data="add_to_movie_list"
         )
     )
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("🎱 Movie Like This"), callback_data="similar_0"
+            text=_("🎱 TV Show Like This"), callback_data="similar_0"
         )
     )
 
@@ -181,7 +181,7 @@ def similar_movie_keyboard(first, movie_list, original_name, movie_id,language):
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("↩️ Back To Search Movies"), callback_data="movies"
+            text=_("↩️ Back To Search"), callback_data="movies"
         )
     )
 
@@ -191,13 +191,13 @@ def similar_movie_keyboard(first, movie_list, original_name, movie_id,language):
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("📝 Add To Movie List"), callback_data="add_to_movie_list"
+            text=_("📝 Add To My List"), callback_data="add_to_movie_list"
         )
     )
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("🎱 Movie Like This"), callback_data="similar_0"
+            text=_("🎱 TV Show Like This"), callback_data="similar_0"
         )
     )
 
@@ -244,7 +244,7 @@ def title_movie_buttons(first, movie_list, original_name, movie_id,language):
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("↩️ Back To Search Movies"), callback_data="movies"
+            text=_("↩️ Back To Search"), callback_data="movies"
         )
     )
 
@@ -254,13 +254,13 @@ def title_movie_buttons(first, movie_list, original_name, movie_id,language):
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("📝 Add To Movie List"), callback_data="add_to_movie_list"
+            text=_("📝 Add To My List"), callback_data="add_to_movie_list"
         )
     )
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("🎱 Movie Like This"), callback_data="similar_0"
+            text=_("🎱 TV Show Like This"), callback_data="similar_0"
         )
     )
 
@@ -306,7 +306,7 @@ def result_keyboard(first, data, original_name, movie_id,language):
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("↩️ Back To Search Movies"), callback_data="movies"
+            text=_("↩️ Back To Search"), callback_data="movies"
         )
     )
 
@@ -316,13 +316,13 @@ def result_keyboard(first, data, original_name, movie_id,language):
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("📝 Add To Movie List"), callback_data="add_to_movie_list"
+            text=_("📝 Add To My List"), callback_data="add_to_movie_list"
         )
     )
 
     buttons.append(
         types.InlineKeyboardButton(
-            text=_("🎱 Movie Like This"), callback_data="similar_0"
+            text=_("🎱 TV Show Like This"), callback_data="similar_0"
         )
     )
 
@@ -365,7 +365,7 @@ def genres_keyboard():
     keyboard = types.InlineKeyboardMarkup(row_width=4)
     keyboard.insert(
         types.InlineKeyboardButton(
-            text=_("↩️ Back To Search Movies"), callback_data="finish"
+            text=_("↩️ Back To Search"), callback_data="finish"
         )
     )
     keyboard.add(*buttons)

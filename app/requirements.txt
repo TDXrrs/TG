@@ -36,3 +36,7 @@ ujson==5.1.0
 urllib3==1.26.8
 uvloop==0.16.0
 yarl==1.7.2
+flask==3.0.2
+thread==1.0.0
+
+

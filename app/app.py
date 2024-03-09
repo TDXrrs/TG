@@ -1,6 +1,7 @@
 from config import ADMIN_ID
 from database import db
 from loader import bot
+from server import server
 
 
 async def on_startup(_):
@@ -16,6 +17,7 @@ async def on_shutdown(dp):
 
 if __name__ == "__main__":
     print("It is Work!")
+    server()
     from aiogram import executor
 
     from handlers import dp

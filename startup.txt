@@ -1,0 +1,59 @@
+# Install Python requirements
+pip install -r requirements.txt
+
+# Launch Python application
+python3 app/app.py
+
+
+[
+  {
+    "name": "ADMIN_ID",
+    "value": "1018233839",
+    "slotSetting": true
+  },
+  {
+    "name": "API_KEY",
+    "value": "b7cd3340a794e5a2f35e3abb820b497f",
+    "slotSetting": true
+  },
+  {
+    "name": "DB_NAME",
+    "value": "tgdatabase_0nou",
+    "slotSetting": true
+  },
+  {
+    "name": "MICROSOFT_PROVIDER_AUTHENTICATION_SECRET",
+    "value": "xyz8Q~fGk13dsnCIY4f8pXYowZXu8YJoILBbxcUz",
+    "slotSetting": true
+  },
+  {
+    "name": "PG_PASS",
+    "value": "KF13q36OIq7VJ9QrAFW4lp5m8GlxmIkd",
+    "slotSetting": true
+  },
+  {
+    "name": "PG_PORT",
+    "value": "5432",
+    "slotSetting": true
+  },
+  {
+    "name": "PG_USER",
+    "value": "tgdatabase_0nou_user",
+    "slotSetting": true
+  },
+  {
+    "name": "PGHOST",
+    "value": "dpg-cnir5dfjbltc73c6tutg-a.frankfurt-postgres.render.com",
+    "slotSetting": true
+  },
+  {
+    "name": "TOKEN",
+    "value": "6807863346:AAGe-IV-zLD_4wGO92tHy143IZ_AaRSrG3w",
+    "slotSetting": true
+  },
+  {
+    "name": "WEBSITE_AUTH_AAD_ALLOWED_TENANTS",
+    "value": "dbd6664d-4eb9-46eb-99d8-5c43ba153c61",
+    "slotSetting": false
+  }
+]
