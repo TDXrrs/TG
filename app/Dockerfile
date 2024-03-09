@@ -1,19 +1,14 @@
-FROM alpine:3.14
 
-#ARG bot_token
-#ENV TOKEN=$bot_token
+FROM mcr.microsoft.com/azure-app-service/python:3.9  # Use a base image optimized for Azure App Service
 
-#ARG api_key
-#ENV API_KEY=$api_key
+WORKDIR /home/site/wwwroot  # Default working directory in Azure App Service
 
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
+COPY requirements.txt ./  # Copy requirements.txt first for caching
+RUN pip install -r requirements.txt
 
-WORKDIR /usr/src/app/
-# copy project
-COPY . /usr/src/app/
-# install dependencies
-RUN pip install -r ../requirements.txt
-# run app
-CMD ["python", "app.py"]
+COPY ./app/ /home/site/wwwroot/  # Copy the entire app contents
+
+EXPOSE 8000  # Expose port for web app (if applicable)
+
+# Run the app with appropriate startup command
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]  # Adjust as needed
