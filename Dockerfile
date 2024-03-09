@@ -1,14 +1,14 @@
-# Use the Python base image for Azure Web App
-FROM mcr.microsoft.com/azure-functions/python:3.0-python3.9
 
-# Set working directory
-WORKDIR /home/site/wwwroot
+FROM mcr.microsoft.com/azure-app-service/python:3.9  # Use a base image optimized for Azure App Service
 
-# Copy project files
-COPY . .
+WORKDIR /home/site/wwwroot  # Default working directory in Azure App Service
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt ./  # Copy requirements.txt first for caching
+RUN pip install -r requirements.txt
 
-# Command to run the application
-CMD ["python", "app.py"]
+COPY ./app/ /home/site/wwwroot/  # Copy the entire app contents
+
+EXPOSE 8000  # Expose port for web app (if applicable)
+
+# Run the app with appropriate startup command
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]  # Adjust as needed
