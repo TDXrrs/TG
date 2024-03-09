@@ -1,16 +1,14 @@
-FROM alpine:3.14
+# Use the Python base image for Azure Web App
+FROM mcr.microsoft.com/azure-functions/python:3.0-python3.9
 
+# Set working directory
+WORKDIR /home/site/wwwroot
 
+# Copy project files
+COPY . .
 
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /usr/src/app/
-# copy project
-COPY ./app/ /usr/src/app/
-# install dependencies
-COPY ./requirements.txt /tmp/
-RUN pip install -r /tmp/requirements.txt && rm -f /tmp/requirements.txt
-# run app
+# Command to run the application
 CMD ["python", "app.py"]
