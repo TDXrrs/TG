@@ -1,16 +1,29 @@
-FROM alpine:3.14
+FROM python:3
 
+ENV HOST 0.0.0.0
+ENV PORT 8080
+ENV WEBSITES_PORT 8080
 
+EXPOSE 8080
+EXPOSE 2222
 
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
+COPY . /app
+COPY ["startup.sh", "/app/startup.sh"]
 
-WORKDIR /usr/src/app/
-# copy project
-COPY ./app/ /usr/src/app/
-# install dependencies
-COPY ./requirements.txt /tmp/
-RUN pip install -r /tmp/requirements.txt && rm -f /tmp/requirements.txt
-# run app
-CMD ["python", "app.py"]
+#SSH
+RUN apt-get update
+RUN apt-get install -y openssh-server 
+RUN echo "root:Docker!" | chpasswd 
+RUN mkdir -p /run/sshd 
+COPY ["sshd_config", "/etc/ssh/"]
+RUN mkdir -p /tmp
+RUN ssh-keygen -A 
+#SSH End
+
+#install additional packages
+RUN apt-get install -y iproute2
+RUN apt-get install -y curl
+#installs END
+
+#start
+CMD ["bash","/app/startup.sh"]
