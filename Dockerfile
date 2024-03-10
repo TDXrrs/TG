@@ -1,14 +1,17 @@
+# Use an Azure App Service base image for Python 3.9
+FROM mcr.microsoft.com/azure-app-service/python:3.9
 
-FROM mcr.microsoft.com/azure-app-service/python:3.9  # Use a base image optimized for Azure App Service
+# Set the working directory in the container
+WORKDIR /home/site/wwwroot
 
-WORKDIR /home/site/wwwroot  # Default working directory in Azure App Service
+# Copy the requirements file to the working directory
+COPY requirements.txt ./
 
-COPY requirements.txt ./  # Copy requirements.txt first for caching
-RUN pip install -r requirements.txt
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ./app/ /home/site/wwwroot/  # Copy the entire app contents
+# Copy the entire application directory into the container
+COPY . .
 
-EXPOSE 8000  # Expose port for web app (if applicable)
-
-# Run the app with appropriate startup command
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]  # Adjust as needed
+# Command to run the bot
+CMD ["python", "app.py"]
