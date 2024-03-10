@@ -25,5 +25,10 @@ RUN apt-get install -y iproute2
 RUN apt-get install -y curl
 #installs END
 
+# Install Python dependencies
+COPY ["requirements.txt", "/app/requirements.txt"]
+RUN pip install --no-cache-dir -r requirements.txt
+
+
 #start
 CMD ["bash","/app/startup.sh"]
